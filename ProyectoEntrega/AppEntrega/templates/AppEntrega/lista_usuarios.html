@@ -1,0 +1,35 @@
+{% extends 'AppEntrega/inicio.html' %}
+
+{% block head_block %}
+
+    <title>Usuarios</title>
+
+{% endblock head_block %}
+
+{% block body_block %}
+
+    <h1>Usuario</h1> <a href = {% url 'Crear_usuario' %}>Crear usuario<a/>
+
+    <form action= {% url 'Usuarios' %} method = 'GET'>
+        <input type='text' name = 'legajo' placeholder='Legajo a buscar...' />
+        <input type='submit' value = 'Buscar'/>
+    </form>
+
+    <ul>
+        {% if usuarios %}
+            {% for  usuario  in usuarios %}
+                <li>
+                    {{usuario}}
+                </li>
+            {% endfor %}
+        {% elif error%}
+            <h3>{{error}}</h3>
+        {% else %}
+            <h3>No se encontraron usuarios con ese legajo</h3>
+        {% endif %}
+    </ul>
+
+
+
+{% endblock body_block %}
+

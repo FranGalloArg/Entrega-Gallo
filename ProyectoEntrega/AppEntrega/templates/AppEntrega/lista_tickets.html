@@ -1,0 +1,37 @@
+{% extends 'AppEntrega/inicio.html' %}
+
+{% block head_block %}
+
+    <title>Tickets</title>
+
+{% endblock head_block %}
+
+{% block body_block %}
+
+    <h1>Tickets</h1> <a href = {% url 'Crear_ticket' %}>Crear ticket<a/>
+
+    <form action= {% url 'Tickets' %} method = 'GET'>
+        <input type='number' name = 'numero' placeholder='Numero a buscar...' />
+        <input type='submit' value = 'Buscar'/>
+    </form>
+
+    <ul>
+        {% if tickets %}
+            {% for  ticket  in tickets %}
+                <li>
+                    {{ticket}}
+                </li>
+            {% endfor %}
+        {% elif error%}
+            <h3>{{error}}</h3>
+        {% else %}
+            <h3>No se encontraron tickets con ese numero</h3>
+        {% endif %}
+    </ul>
+
+
+
+{% endblock body_block %}
+
+
+
